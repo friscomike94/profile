@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mike — Designer</title>
+<link rel="stylesheet" href="css/style.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,400;12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="n-logo">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="n-badge">
+      <polygon points="100,12 172,52 172,148 100,188 28,148 28,52" fill="none" stroke="#c8ff00" stroke-width="0.5" opacity="0.12"/>
+      <polygon points="100,12 172,52 172,148 100,188 28,148 28,52" fill="none" stroke="#c8ff00" stroke-width="1" opacity="0.3"/>
+      <polygon points="100,12 172,52 172,148 100,188 28,148 28,52" fill="none" stroke="#c8ff00" stroke-width="0.9" opacity="0.5" stroke-dasharray="4 2"/>
+      <circle cx="100" cy="100" r="56" fill="none" stroke="#0014ff" stroke-width="0.6" stroke-dasharray="3 9" opacity="0.3"/>
+      <circle cx="100" cy="12"  r="3" fill="#c8ff00" opacity="0.9"/>
+      <circle cx="172" cy="52"  r="3" fill="#c8ff00" opacity="0.9"/>
+      <circle cx="172" cy="148" r="3" fill="#c8ff00" opacity="0.9"/>
+      <circle cx="100" cy="188" r="3" fill="#c8ff00" opacity="0.9"/>
+      <circle cx="28"  cy="148" r="3" fill="#c8ff00" opacity="0.9"/>
+      <circle cx="28"  cy="52"  r="3" fill="#c8ff00" opacity="0.9"/>
+      <path d="M52 152 L52 48 L80 100 L108 48 L108 152" fill="none" stroke="#c8ff00" stroke-width="13" stroke-linejoin="miter" stroke-linecap="square"/>
+      <path d="M120 152 L120 48 L168 100 L120 48 L168 152" fill="none" stroke="#c8ff00" stroke-width="13" stroke-linejoin="miter" stroke-linecap="square"/>
+      <rect x="52" y="93" width="24" height="7" fill="#0a0a0a"/>
+      <rect x="92" y="93" width="16" height="7" fill="#0a0a0a"/>
+      <rect x="64" y="98" width="64" height="3.5" fill="#c8ff00"/>
+    </svg>
+  </a>
+  <ul class="n-links">
+    <li><a href="#works">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="n-hire">Hire me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-diagonal"></div>
+  <div class="hero-diagonal-inner">
+    <div class="hero-shape-container">
+      <div class="hero-circle" id="badge-hero">
+        <!-- Inline logo badge SVG -->
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="badge-svg">
+          <rect width="200" height="200" fill="transparent"/>
+          <polygon id="hex-static" points="100,12 172,52 172,148 100,188 28,148 28,52" fill="none" stroke="#c8ff00" stroke-width="0.5" opacity="0.12"/>
+          <polygon id="hex-outer" points="100,12 172,52 172,148 100,188 28,148 28,52" fill="none" stroke="#c8ff00" stroke-width="1" opacity="0.3"/>
+          <polygon id="hex-spin" points="100,12 172,52 172,148 100,188 28,148 28,52" fill="none" stroke="#c8ff00" stroke-width="0.9" opacity="0.5" stroke-dasharray="4 2"/>
+          <circle id="inner-ring" cx="100" cy="100" r="56" fill="none" stroke="#0014ff" stroke-width="0.6" stroke-dasharray="3 9" opacity="0.3"/>
+          <circle cx="100" cy="100" r="68" fill="none" stroke="#c8ff00" stroke-width="0.3" stroke-dasharray="1 6" opacity="0.15"/>
+          <circle id="dot0" cx="100" cy="12"  r="3" fill="#c8ff00" opacity="0.9"/>
+          <circle id="dot1" cx="172" cy="52"  r="3" fill="#c8ff00" opacity="0.9"/>
+          <circle id="dot2" cx="172" cy="148" r="3" fill="#c8ff00" opacity="0.9"/>
+          <circle id="dot3" cx="100" cy="188" r="3" fill="#c8ff00" opacity="0.9"/>
+          <circle id="dot4" cx="28"  cy="148" r="3" fill="#c8ff00" opacity="0.9"/>
+          <circle id="dot5" cx="28"  cy="52"  r="3" fill="#c8ff00" opacity="0.9"/>
+          <g id="glitch-red" opacity="0.5" transform="translate(2.5,-1.5)">
+            <path d="M52 152 L52 48 L80 100 L108 48 L108 152" fill="none" stroke="#ff1f1f" stroke-width="13" stroke-linejoin="miter" stroke-linecap="square"/>
+            <path d="M120 152 L120 48 L168 100 L120 48 L168 152" fill="none" stroke="#ff1f1f" stroke-width="13" stroke-linejoin="miter" stroke-linecap="square"/>
+          </g>
+          <g id="glitch-blue" opacity="0.45" transform="translate(-2.5,1.5)">
+            <path d="M52 152 L52 48 L80 100 L108 48 L108 152" fill="none" stroke="#0014ff" stroke-width="13" stroke-linejoin="miter" stroke-linecap="square"/>
+            <path d="M120 152 L120 48 L168 100 L120 48 L168 152" fill="none" stroke="#0014ff" stroke-width="13" stroke-linejoin="miter" stroke-linecap="square"/>
+          </g>
+          <path d="M52 152 L52 48 L80 100 L108 48 L108 152" fill="none" stroke="#c8ff00" stroke-width="13" stroke-linejoin="miter" stroke-linecap="square"/>
+          <path d="M120 152 L120 48 L168 100 L120 48 L168 152" fill="none" stroke="#c8ff00" stroke-width="13" stroke-linejoin="miter" stroke-linecap="square"/>
+          <rect x="52" y="93" width="24" height="7" fill="#0a0a0a"/>
+          <rect x="92" y="93" width="16" height="7" fill="#0a0a0a"/>
+          <rect x="64" y="98" width="64" height="3.5" fill="#c8ff00"/>
+          <text x="100" y="176" font-family="'Courier New',monospace" font-size="5" fill="#c8ff00" opacity="0.55" text-anchor="middle" letter-spacing="2">MK · 001</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-left">
+    <div class="hero-overline">Available for work · 2025</div>
+    <h1 class="hero-h1">
+      <div>MIKE</div>
+      <div class="ghost">MAKES</div>
+      <div class="acid-word">MOVES.</div>
+    </h1>
+    <p class="hero-sub">
+      <strong>Aesthetic boundaries exist to be pushed.</strong><br/>
+      UI/UX · Motion · Brand Identity — designed at the intersection of raw energy and functional precision.
+    </p>
+    <div class="hero-cta-row">
+      <a href="#works" class="btn-primary">See my work →</a>
+      <a href="#contact" class="btn-ghost">Let's talk</a>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-stats">
+      <div>
+        <div class="stat-n">20<span>+</span></div>
+        <div class="stat-l">Projects shipped</div>
+      </div>
+      <div>
+        <div class="stat-n">3<span>×</span></div>
+        <div class="stat-l">Disciplines</div>
+      </div>
+      <div>
+        <div class="stat-n">∞</div>
+        <div class="stat-l">Boundaries left</div>
+      </div>
+    </div>
+    <a href="#works" class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-bar"></div>
+    </a>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item">UI/UX Design <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Motion & Animation <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Brand Identity <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Interaction Design <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Visual Systems <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Academy of Art · SF <span class="ticker-dot"></span></div>
+    <div class="ticker-item">UI/UX Design <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Motion & Animation <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Brand Identity <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Interaction Design <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Visual Systems <span class="ticker-dot"></span></div>
+    <div class="ticker-item">Academy of Art · SF <span class="ticker-dot"></span></div>
+  </div>
+</div>
+
+<!-- WORKS -->
+<section id="works">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Selected Work</div>
+      <h2 class="section-h reveal">WHAT<br/>I BUILT.</h2>
+    </div>
+    <a href="#" class="see-all">All projects →</a>
+  </div>
+
+  <div class="works-list">
+    <div class="work-item featured-row reveal">
+      <div class="work-idx">01 / Featured</div>
+      <div class="work-center">
+        <div class="work-tags-row">
+          <span class="wtag">UI/UX</span>
+          <span class="wtag">Product</span>
+          <span class="wtag">2024</span>
+        </div>
+        <div class="work-title-row">Nexus — Analytics Platform</div>
+        <div class="work-desc">End-to-end redesign of a SaaS dashboard. Cut task completion time by 40% through radical information hierarchy.</div>
+      </div>
+      <div class="work-arrow">↗</div>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-idx">02</div>
+      <div class="work-center">
+        <div class="work-tags-row">
+          <span class="wtag">Branding</span>
+          <span class="wtag">Identity</span>
+          <span class="wtag">2024</span>
+        </div>
+        <div class="work-title-row">Orb Studio — Brand System</div>
+        <div class="work-desc">Complete visual identity for a creative agency. Logo, typography, color language, and full brand guidelines.</div>
+      </div>
+      <div class="work-arrow">↗</div>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-idx">03</div>
+      <div class="work-center">
+        <div class="work-tags-row">
+          <span class="wtag">Motion</span>
+          <span class="wtag">After Effects</span>
+          <span class="wtag">2023</span>
+        </div>
+        <div class="work-title-row">Kinetic — Motion Reel</div>
+        <div class="work-desc">A curated series of UI motion studies — transitions, micro-interactions, and animated brand moments.</div>
+      </div>
+      <div class="work-arrow">↗</div>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-idx">04</div>
+      <div class="work-center">
+        <div class="work-tags-row">
+          <span class="wtag">UI/UX</span>
+          <span class="wtag">Mobile</span>
+          <span class="wtag">2023</span>
+        </div>
+        <div class="work-title-row">Pulse — Health App</div>
+        <div class="work-desc">Mobile-first health tracking app designed around calm, clarity, and behavioral momentum.</div>
+      </div>
+      <div class="work-arrow">↗</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left reveal">
+    <div class="about-label">About Mike</div>
+    <h2 class="about-h">DESIGN<br/>IS A<br/>STANCE.</h2>
+    <p class="about-body">
+      I'm a <strong>multidisciplinary designer</strong> from San Francisco with a relentless obsession for work that hits different. Not decoration. Not polish. A <strong>point of view</strong> — expressed through interface, motion, and identity.
+    </p>
+    <p class="about-body">
+      I push aesthetic boundaries while keeping every pixel accountable to function. The work should feel <strong>inevitable</strong> the moment someone sees it.
+    </p>
+    <div class="about-edu">
+      <b>Education</b>
+      BFA · Web Design & New Media<br/>Academy of Art University, San Francisco
+    </div>
+  </div>
+
+  <div class="about-right reveal">
+    <div class="discipline-card">
+      <div class="disc-header">
+        <span class="disc-name">UI / UX</span>
+        <span class="disc-num">01</span>
+      </div>
+      <div class="disc-bar"><div class="disc-bar-fill" style="--w:88%"></div></div>
+      <div class="disc-desc">Research to pixel-perfect. Systems that scale, interactions that feel like breathing.</div>
+    </div>
+    <div class="discipline-card">
+      <div class="disc-header">
+        <span class="disc-name">Motion</span>
+        <span class="disc-num">02</span>
+      </div>
+      <div class="disc-bar"><div class="disc-bar-fill" style="--w:78%"></div></div>
+      <div class="disc-desc">Animation as narrative. UI motion that communicates intent without screaming.</div>
+    </div>
+    <div class="discipline-card">
+      <div class="disc-header">
+        <span class="disc-name">Identity</span>
+        <span class="disc-num">03</span>
+      </div>
+      <div class="disc-bar"><div class="disc-bar-fill" style="--w:82%"></div></div>
+      <div class="disc-desc">Visual language that outlasts trends. Built to own a space no other brand can touch.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="skills-top">
+    <div class="reveal">
+      <div class="section-label">Toolkit</div>
+      <h2 class="section-h">TOOLS<br/>OF THE<br/>CRAFT.</h2>
+      <p class="skills-intro">Sharp tools, sharper eye. Here's what I use to turn ideas into things that hit.</p>
+    </div>
+  </div>
+  <div class="skills-mosaic reveal">
+    <div class="sk"><div class="sk-abbr">Fg</div><div class="sk-name">Figma</div><div class="sk-cat">UI · Proto</div></div>
+    <div class="sk"><div class="sk-abbr">Ae</div><div class="sk-name">After Effects</div><div class="sk-cat">Motion</div></div>
+    <div class="sk"><div class="sk-abbr">Ai</div><div class="sk-name">Illustrator</div><div class="sk-cat">Vector · Brand</div></div>
+    <div class="sk"><div class="sk-abbr">Ps</div><div class="sk-name">Photoshop</div><div class="sk-cat">Image</div></div>
+    <div class="sk"><div class="sk-abbr">Fr</div><div class="sk-name">Framer</div><div class="sk-cat">Web · No-code</div></div>
+    <div class="sk"><div class="sk-abbr">Pr</div><div class="sk-name">Premiere</div><div class="sk-cat">Video</div></div>
+    <div class="sk"><div class="sk-abbr">&lt;/&gt;</div><div class="sk-name">HTML / CSS</div><div class="sk-cat">Frontend</div></div>
+    <div class="sk"><div class="sk-abbr">Js</div><div class="sk-name">JavaScript</div><div class="sk-cat">Interaction</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-bg-text">MIKE</div>
+  <div class="section-label" style="margin-bottom:2rem;text-align:center;">Let's build something</div>
+  <div class="contact-giant reveal">
+    <div class="line1">GOT A</div>
+    <div class="line2">WILD</div>
+    <div class="line3">IDEA?</div>
+  </div>
+  <p class="contact-meta reveal">Open to freelance, full-time, and anything that sounds like a challenge. Let's make it real.</p>
+  <div class="contact-btns reveal">
+    <a href="mailto:mike@email.com" class="btn-primary">Email me →</a>
+    <a href="https://linkedin.com/in/mike" class="btn-ghost" target="_blank">LinkedIn</a>
+    <a href="https://behance.net/mike" class="btn-ghost" target="_blank">Behance</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="f-copy">© 2025 Mike — All rights reserved</span>
+  <ul class="f-links">
+    <li><a href="#works">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script src="js/logo.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
