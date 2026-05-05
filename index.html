@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Mike — Designer</title>
 <link rel="stylesheet" href="css/style.css"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,400;12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,400;12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 </head>
 <body>
 
@@ -34,22 +34,26 @@
     </svg>
   </a>
   <ul class="n-links">
-    <li><a href="#works">Work</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#works" data-i18n="nav.work">Work</a></li>
+    <li><a href="#about" data-i18n="nav.about">About</a></li>
+    <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+    <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
   </ul>
-  <a href="#contact" class="n-hire">Hire me</a>
+  <div class="nav-toggles">
+    <button class="toggle-btn" id="lang-toggle">한국어</button>
+    <button class="toggle-btn" id="invert-toggle">◐</button>
+    <a href="#contact" class="n-hire" data-i18n="nav.hire">Hire me</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg-grid"></div>
+  <canvas id="quantum-canvas"></canvas>
   <div class="hero-diagonal"></div>
   <div class="hero-diagonal-inner">
     <div class="hero-shape-container">
       <div class="hero-circle" id="badge-hero">
-        <!-- Inline logo badge SVG -->
         <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="badge-svg">
           <rect width="200" height="200" fill="transparent"/>
           <polygon id="hex-static" points="100,12 172,52 172,148 100,188 28,148 28,52" fill="none" stroke="#c8ff00" stroke-width="0.5" opacity="0.12"/>
@@ -82,20 +86,27 @@
     </div>
   </div>
 
+  <div class="q-readouts" aria-hidden="true">
+    <span class="q-eq" style="top:8%;left:3%">S = −T∫d²σ√−γ</span>
+    <span class="q-eq" style="top:17%;left:14%">α′M² = N − a</span>
+    <span class="q-eq" style="top:27%;left:5%">∂_α∂^α Xᵘ = 0</span>
+    <span class="q-eq" style="top:9%;left:38%">T_αβ = 0</span>
+    <span class="q-eq" style="top:22%;left:30%">D = 10</span>
+    <span class="q-eq" style="top:36%;left:20%">[Xᵘ, P_ν] = iη^μ_ν</span>
+  </div>
+
   <div class="hero-left">
-    <div class="hero-overline">Available for work · 2025</div>
+    <div class="hero-overline" data-i18n="hero.overline">Available for work · 2026</div>
     <h1 class="hero-h1">
       <div>MIKE</div>
-      <div class="ghost">MAKES</div>
-      <div class="acid-word">MOVES.</div>
+      <div class="ghost" data-i18n="hero.h1.makes">MAKES</div>
+      <div class="acid-word" data-i18n="hero.h1.moves">MOVES.</div>
     </h1>
-    <p class="hero-sub">
-      <strong>Aesthetic boundaries exist to be pushed.</strong><br/>
-      UI/UX · Motion · Brand Identity — designed at the intersection of raw energy and functional precision.
-    </p>
+    <p class="hero-sub" data-i18n="hero.sub"><strong>Aesthetic boundaries exist to be pushed.</strong><br/>
+      UI/UX · Motion · Brand Identity — designed at the intersection of raw energy and functional precision.</p>
     <div class="hero-cta-row">
-      <a href="#works" class="btn-primary">See my work →</a>
-      <a href="#contact" class="btn-ghost">Let's talk</a>
+      <a href="#works" class="btn-primary" data-i18n="hero.cta.work">See my work →</a>
+      <a href="#contact" class="btn-ghost" data-i18n="hero.cta.talk">Let's talk</a>
     </div>
   </div>
 
@@ -103,19 +114,19 @@
     <div class="hero-stats">
       <div>
         <div class="stat-n">20<span>+</span></div>
-        <div class="stat-l">Projects shipped</div>
+        <div class="stat-l" data-i18n="stat.projects">Projects shipped</div>
       </div>
       <div>
         <div class="stat-n">3<span>×</span></div>
-        <div class="stat-l">Disciplines</div>
+        <div class="stat-l" data-i18n="stat.disciplines">Disciplines</div>
       </div>
       <div>
         <div class="stat-n">∞</div>
-        <div class="stat-l">Boundaries left</div>
+        <div class="stat-l" data-i18n="stat.boundaries">Boundaries left</div>
       </div>
     </div>
     <a href="#works" class="scroll-hint">
-      <span>Scroll</span>
+      <span data-i18n="hero.scroll">Scroll</span>
       <div class="scroll-bar"></div>
     </a>
   </div>
@@ -124,18 +135,18 @@
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-track">
-    <div class="ticker-item">UI/UX Design <span class="ticker-dot"></span></div>
-    <div class="ticker-item">Motion & Animation <span class="ticker-dot"></span></div>
-    <div class="ticker-item">Brand Identity <span class="ticker-dot"></span></div>
-    <div class="ticker-item">Interaction Design <span class="ticker-dot"></span></div>
-    <div class="ticker-item">Visual Systems <span class="ticker-dot"></span></div>
-    <div class="ticker-item">Academy of Art · SF <span class="ticker-dot"></span></div>
-    <div class="ticker-item">UI/UX Design <span class="ticker-dot"></span></div>
-    <div class="ticker-item">Motion & Animation <span class="ticker-dot"></span></div>
-    <div class="ticker-item">Brand Identity <span class="ticker-dot"></span></div>
-    <div class="ticker-item">Interaction Design <span class="ticker-dot"></span></div>
-    <div class="ticker-item">Visual Systems <span class="ticker-dot"></span></div>
-    <div class="ticker-item">Academy of Art · SF <span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span data-i18n="ticker.uiux">UI/UX Design</span> <span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span data-i18n="ticker.motion">Motion & Animation</span> <span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span data-i18n="ticker.brand">Brand Identity</span> <span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span data-i18n="ticker.interaction">Interaction Design</span> <span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span data-i18n="ticker.visual">Visual Systems</span> <span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span data-i18n="ticker.academy">Academy of Art · SF</span> <span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span data-i18n="ticker.uiux">UI/UX Design</span> <span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span data-i18n="ticker.motion">Motion & Animation</span> <span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span data-i18n="ticker.brand">Brand Identity</span> <span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span data-i18n="ticker.interaction">Interaction Design</span> <span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span data-i18n="ticker.visual">Visual Systems</span> <span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span data-i18n="ticker.academy">Academy of Art · SF</span> <span class="ticker-dot"></span></div>
   </div>
 </div>
 
@@ -143,10 +154,10 @@
 <section id="works">
   <div class="section-header">
     <div>
-      <div class="section-label">Selected Work</div>
-      <h2 class="section-h reveal">WHAT<br/>I BUILT.</h2>
+      <div class="section-label" data-i18n="works.label">Selected Work</div>
+      <h2 class="section-h reveal" data-i18n="works.h">WHAT<br/>I BUILT.</h2>
     </div>
-    <a href="#" class="see-all">All projects →</a>
+    <a href="#" class="see-all" data-i18n="works.seeall">All projects →</a>
   </div>
 
   <div class="works-list">
@@ -158,8 +169,8 @@
           <span class="wtag">Product</span>
           <span class="wtag">2024</span>
         </div>
-        <div class="work-title-row">Nexus — Analytics Platform</div>
-        <div class="work-desc">End-to-end redesign of a SaaS dashboard. Cut task completion time by 40% through radical information hierarchy.</div>
+        <div class="work-title-row" data-i18n="work.01.title">Nexus — Analytics Platform</div>
+        <div class="work-desc" data-i18n="work.01.desc">End-to-end redesign of a SaaS dashboard. Cut task completion time by 40% through radical information hierarchy.</div>
       </div>
       <div class="work-arrow">↗</div>
     </div>
@@ -172,8 +183,8 @@
           <span class="wtag">Identity</span>
           <span class="wtag">2024</span>
         </div>
-        <div class="work-title-row">Orb Studio — Brand System</div>
-        <div class="work-desc">Complete visual identity for a creative agency. Logo, typography, color language, and full brand guidelines.</div>
+        <div class="work-title-row" data-i18n="work.02.title">Orb Studio — Brand System</div>
+        <div class="work-desc" data-i18n="work.02.desc">Complete visual identity for a creative agency. Logo, typography, color language, and full brand guidelines.</div>
       </div>
       <div class="work-arrow">↗</div>
     </div>
@@ -186,8 +197,8 @@
           <span class="wtag">After Effects</span>
           <span class="wtag">2023</span>
         </div>
-        <div class="work-title-row">Kinetic — Motion Reel</div>
-        <div class="work-desc">A curated series of UI motion studies — transitions, micro-interactions, and animated brand moments.</div>
+        <div class="work-title-row" data-i18n="work.03.title">Kinetic — Motion Reel</div>
+        <div class="work-desc" data-i18n="work.03.desc">A curated series of UI motion studies — transitions, micro-interactions, and animated brand moments.</div>
       </div>
       <div class="work-arrow">↗</div>
     </div>
@@ -200,8 +211,8 @@
           <span class="wtag">Mobile</span>
           <span class="wtag">2023</span>
         </div>
-        <div class="work-title-row">Pulse — Health App</div>
-        <div class="work-desc">Mobile-first health tracking app designed around calm, clarity, and behavioral momentum.</div>
+        <div class="work-title-row" data-i18n="work.04.title">Pulse — Health App</div>
+        <div class="work-desc" data-i18n="work.04.desc">Mobile-first health tracking app designed around calm, clarity, and behavioral momentum.</div>
       </div>
       <div class="work-arrow">↗</div>
     </div>
@@ -211,17 +222,17 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="about-left reveal">
-    <div class="about-label">About Mike</div>
-    <h2 class="about-h">DESIGN<br/>IS A<br/>STANCE.</h2>
-    <p class="about-body">
+    <div class="about-label" data-i18n="about.label">About Mike</div>
+    <h2 class="about-h" data-i18n="about.h">DESIGN<br/>IS A<br/>STANCE.</h2>
+    <p class="about-body" data-i18n="about.body1">
       I'm a <strong>multidisciplinary designer</strong> from San Francisco with a relentless obsession for work that hits different. Not decoration. Not polish. A <strong>point of view</strong> — expressed through interface, motion, and identity.
     </p>
-    <p class="about-body">
+    <p class="about-body" data-i18n="about.body2">
       I push aesthetic boundaries while keeping every pixel accountable to function. The work should feel <strong>inevitable</strong> the moment someone sees it.
     </p>
     <div class="about-edu">
-      <b>Education</b>
-      BFA · Web Design & New Media<br/>Academy of Art University, San Francisco
+      <b data-i18n="about.edu.label">Education</b>
+      <span data-i18n="about.edu.content">BFA · Web Design & New Media<br/>Academy of Art University, San Francisco</span>
     </div>
   </div>
 
@@ -232,7 +243,7 @@
         <span class="disc-num">01</span>
       </div>
       <div class="disc-bar"><div class="disc-bar-fill" style="--w:88%"></div></div>
-      <div class="disc-desc">Research to pixel-perfect. Systems that scale, interactions that feel like breathing.</div>
+      <div class="disc-desc" data-i18n="disc.01.desc">Research to pixel-perfect. Systems that scale, interactions that feel like breathing.</div>
     </div>
     <div class="discipline-card">
       <div class="disc-header">
@@ -240,7 +251,7 @@
         <span class="disc-num">02</span>
       </div>
       <div class="disc-bar"><div class="disc-bar-fill" style="--w:78%"></div></div>
-      <div class="disc-desc">Animation as narrative. UI motion that communicates intent without screaming.</div>
+      <div class="disc-desc" data-i18n="disc.02.desc">Animation as narrative. UI motion that communicates intent without screaming.</div>
     </div>
     <div class="discipline-card">
       <div class="disc-header">
@@ -248,7 +259,7 @@
         <span class="disc-num">03</span>
       </div>
       <div class="disc-bar"><div class="disc-bar-fill" style="--w:82%"></div></div>
-      <div class="disc-desc">Visual language that outlasts trends. Built to own a space no other brand can touch.</div>
+      <div class="disc-desc" data-i18n="disc.03.desc">Visual language that outlasts trends. Built to own a space no other brand can touch.</div>
     </div>
   </div>
 </section>
@@ -257,9 +268,9 @@
 <section id="skills">
   <div class="skills-top">
     <div class="reveal">
-      <div class="section-label">Toolkit</div>
-      <h2 class="section-h">TOOLS<br/>OF THE<br/>CRAFT.</h2>
-      <p class="skills-intro">Sharp tools, sharper eye. Here's what I use to turn ideas into things that hit.</p>
+      <div class="section-label" data-i18n="skills.label">Toolkit</div>
+      <h2 class="section-h" data-i18n="skills.h">TOOLS<br/>OF THE<br/>CRAFT.</h2>
+      <p class="skills-intro" data-i18n="skills.intro">Sharp tools, sharper eye. Here's what I use to turn ideas into things that hit.</p>
     </div>
   </div>
   <div class="skills-mosaic reveal">
@@ -277,15 +288,15 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-bg-text">MIKE</div>
-  <div class="section-label" style="margin-bottom:2rem;text-align:center;">Let's build something</div>
+  <div class="section-label" style="margin-bottom:2rem;text-align:center;" data-i18n="contact.label">Let's build something</div>
   <div class="contact-giant reveal">
-    <div class="line1">GOT A</div>
-    <div class="line2">WILD</div>
-    <div class="line3">IDEA?</div>
+    <div class="line1" data-i18n="contact.line1">GOT A</div>
+    <div class="line2" data-i18n="contact.line2">WILD</div>
+    <div class="line3" data-i18n="contact.line3">IDEA?</div>
   </div>
-  <p class="contact-meta reveal">Open to freelance, full-time, and anything that sounds like a challenge. Let's make it real.</p>
+  <p class="contact-meta reveal" data-i18n="contact.meta">Open to freelance, full-time, and anything that sounds like a challenge. Let's make it real.</p>
   <div class="contact-btns reveal">
-    <a href="mailto:mike@email.com" class="btn-primary">Email me →</a>
+    <a href="mailto:friscomike94@gmail.com" class="btn-primary" data-i18n="contact.email">Email me →</a>
     <a href="https://linkedin.com/in/mike" class="btn-ghost" target="_blank">LinkedIn</a>
     <a href="https://behance.net/mike" class="btn-ghost" target="_blank">Behance</a>
   </div>
@@ -293,16 +304,17 @@
 
 <!-- FOOTER -->
 <footer>
-  <span class="f-copy">© 2025 Mike — All rights reserved</span>
+  <span class="f-copy" data-i18n="footer.copy">© 2026 Mike — All rights reserved</span>
   <ul class="f-links">
-    <li><a href="#works">Work</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#works" data-i18n="footer.work">Work</a></li>
+    <li><a href="#about" data-i18n="footer.about">About</a></li>
+    <li><a href="#skills" data-i18n="footer.skills">Skills</a></li>
+    <li><a href="#contact" data-i18n="footer.contact">Contact</a></li>
   </ul>
 </footer>
 
 <script src="js/logo.js"></script>
 <script src="js/main.js"></script>
+<script src="js/quantum.js"></script>
 </body>
 </html>
