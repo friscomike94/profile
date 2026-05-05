@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ABI — Mike</title>
+<link rel="stylesheet" href="css/style.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,400;12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  .cs-wrap { max-width: 1000px; margin: 0 auto; padding: 0 2.5rem 8rem; }
+  .cs-hero {
+    min-height: 60vh; display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 6rem 2.5rem 4rem;
+    border-bottom: 1px solid var(--border); position: relative; overflow: hidden;
+  }
+  .cs-hero-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(242,237,230,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(242,237,230,.03) 1px, transparent 1px);
+    background-size: 80px 80px; pointer-events: none;
+  }
+  .cs-back {
+    font-family: var(--f-mono); font-size: .63rem;
+    text-transform: uppercase; letter-spacing: .14em;
+    color: var(--muted); margin-bottom: 3rem;
+    display: inline-flex; align-items: center; gap: .5rem;
+    transition: color .2s; position: relative; z-index: 2;
+  }
+  .cs-back:hover { color: var(--acid); }
+  .cs-label {
+    font-family: var(--f-mono); font-size: .63rem;
+    text-transform: uppercase; letter-spacing: .18em;
+    color: var(--acid); margin-bottom: 1.2rem; position: relative; z-index: 2;
+  }
+  .cs-title {
+    font-family: var(--f-display);
+    font-size: clamp(4rem, 10vw, 8rem);
+    line-height: .88; letter-spacing: .02em;
+    color: var(--paper); position: relative; z-index: 2;
+    margin-bottom: 2rem;
+  }
+  .cs-meta-row {
+    display: flex; gap: 3rem; flex-wrap: wrap;
+    position: relative; z-index: 2;
+  }
+  .cs-meta-label {
+    font-family: var(--f-mono); font-size: .55rem;
+    text-transform: uppercase; letter-spacing: .14em;
+    color: var(--muted); margin-bottom: .3rem;
+  }
+  .cs-meta-val {
+    font-family: var(--f-mono); font-size: .7rem;
+    color: var(--paper); letter-spacing: .04em;
+  }
+  .cs-section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  .cs-section:last-child { border-bottom: none; }
+  .cs-section-label {
+    font-family: var(--f-mono); font-size: .58rem;
+    text-transform: uppercase; letter-spacing: .18em;
+    color: var(--acid); margin-bottom: 1rem;
+  }
+  .cs-h2 {
+    font-family: var(--f-display);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    letter-spacing: .02em; color: var(--paper);
+    line-height: .9; margin-bottom: 2.5rem;
+  }
+  .cs-body {
+    font-size: .95rem; color: var(--muted);
+    line-height: 1.85; max-width: 680px;
+  }
+  .cs-body strong { color: var(--paper); font-weight: 500; }
+  .cs-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-top: 2.5rem; }
+  .cs-col-label {
+    font-family: var(--f-mono); font-size: .58rem;
+    text-transform: uppercase; letter-spacing: .14em;
+    color: var(--acid); margin-bottom: .8rem;
+    border-bottom: 1px solid rgba(200,255,0,.15); padding-bottom: .5rem;
+  }
+  .cs-col-body { font-size: .85rem; color: var(--muted); line-height: 1.75; }
+  .cs-stats { display: flex; gap: 4rem; flex-wrap: wrap; margin-top: 2.5rem; }
+  .cs-stat-n {
+    font-family: var(--f-display); font-size: 3.5rem;
+    color: var(--acid); line-height: 1;
+  }
+  .cs-stat-l {
+    font-family: var(--f-mono); font-size: .6rem;
+    text-transform: uppercase; letter-spacing: .1em;
+    color: var(--muted); margin-top: .3rem;
+  }
+  @media (max-width: 768px) {
+    .cs-3col { grid-template-columns: 1fr; }
+    .cs-meta-row { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<nav>
+  <a href="index.html" class="n-logo">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="n-badge">
+      <polygon points="100,12 172,52 172,148 100,188 28,148 28,52" fill="none" stroke="#c8ff00" stroke-width="0.5" opacity="0.12"/>
+      <polygon points="100,12 172,52 172,148 100,188 28,148 28,52" fill="none" stroke="#c8ff00" stroke-width="1" opacity="0.3"/>
+      <polygon points="100,12 172,52 172,148 100,188 28,148 28,52" fill="none" stroke="#c8ff00" stroke-width="0.9" opacity="0.5" stroke-dasharray="4 2"/>
+      <circle cx="100" cy="100" r="56" fill="none" stroke="#0014ff" stroke-width="0.6" stroke-dasharray="3 9" opacity="0.3"/>
+      <circle cx="100" cy="12" r="3" fill="#c8ff00" opacity="0.9"/>
+      <circle cx="172" cy="52" r="3" fill="#c8ff00" opacity="0.9"/>
+      <circle cx="172" cy="148" r="3" fill="#c8ff00" opacity="0.9"/>
+      <circle cx="100" cy="188" r="3" fill="#c8ff00" opacity="0.9"/>
+      <circle cx="28" cy="148" r="3" fill="#c8ff00" opacity="0.9"/>
+      <circle cx="28" cy="52" r="3" fill="#c8ff00" opacity="0.9"/>
+      <path d="M52 152 L52 48 L80 100 L108 48 L108 152" fill="none" stroke="#c8ff00" stroke-width="13" stroke-linejoin="miter" stroke-linecap="square"/>
+      <path d="M120 152 L120 48 L168 100 L120 48 L168 152" fill="none" stroke="#c8ff00" stroke-width="13" stroke-linejoin="miter" stroke-linecap="square"/>
+      <rect x="52" y="93" width="24" height="7" fill="#0a0a0a"/>
+      <rect x="92" y="93" width="16" height="7" fill="#0a0a0a"/>
+      <rect x="64" y="98" width="64" height="3.5" fill="#c8ff00"/>
+    </svg>
+  </a>
+  <ul class="n-links">
+    <li><a href="index.html#works">Work</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="index.html#contact" class="n-hire">Hire me</a>
+</nav>
+
+<div class="cs-hero">
+  <div class="cs-hero-bg"></div>
+  <a href="index.html#works" class="cs-back">← Back to work</a>
+  <div class="cs-label">UI/UX · AI · Music · Case Study</div>
+  <h1 class="cs-title">ABI</h1>
+  <div class="cs-meta-row">
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">Type</div>
+      <div class="cs-meta-val">Mobile App — iOS</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">Role</div>
+      <div class="cs-meta-val">UX Research · UI Design</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">Technology</div>
+      <div class="cs-meta-val">AI · Mood Detection</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">Target</div>
+      <div class="cs-meta-val">Music listeners · Age 16–35</div>
+    </div>
+  </div>
+</div>
+
+<div class="cs-wrap">
+
+  <div class="cs-section">
+    <div class="cs-section-label">Overview</div>
+    <h2 class="cs-h2">THE CONCEPT</h2>
+    <p class="cs-body">
+      Music is emotional. The way we find it shouldn't be a chore. Streaming platforms hand you a search bar and an algorithm — neither of which knows how you feel right now.
+      <strong>ABI</strong> is an AI-powered music app that reads the user's mood and curates a soundtrack to match. No search. No scrolling. Just feel.
+    </p>
+    <div class="cs-3col">
+      <div>
+        <div class="cs-col-label">Problem</div>
+        <div class="cs-col-body">Finding music that matches your current mood requires active effort — browsing, searching, skipping. The experience fights the feeling instead of serving it.</div>
+      </div>
+      <div>
+        <div class="cs-col-label">Solution</div>
+        <div class="cs-col-body">AI that scans your mood through input signals and instantly surfaces music that fits — removing the interface so the music can be the experience.</div>
+      </div>
+      <div>
+        <div class="cs-col-label">Success</div>
+        <div class="cs-col-body">Zero-friction music discovery. Users open the app, express a feeling, and the right song is already playing before they think twice.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <div class="cs-section-label">Screens</div>
+    <h2 class="cs-h2">THE APP</h2>
+    <p class="cs-body">The interface disappears so the music can take over — mood input, AI curation, and playback in one continuous flow.</p>
+    <div style="margin-top:2.5rem; display:flex; flex-direction:column; gap:1px;">
+      <img src="assets/abi/1.png" alt="ABI — mood detection and onboarding screens" style="width:100%;display:block;"/>
+      <img src="assets/abi/2.png" alt="ABI — AI curation and playback screens" style="width:100%;display:block;"/>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <div class="cs-section-label">Outcome</div>
+    <h2 class="cs-h2">WHAT IT BECAME</h2>
+    <p class="cs-body">
+      ABI proved that the best music interface is <strong>no interface</strong>. By letting AI handle discovery, the app turns a passive emotional state into an active listening experience — without any of the friction that kills the mood.
+      The design challenged the assumption that users want control over their music. Sometimes they just want to be heard.
+    </p>
+    <div class="cs-stats">
+      <div>
+        <div class="cs-stat-n">AI</div>
+        <div class="cs-stat-l">Mood engine</div>
+      </div>
+      <div>
+        <div class="cs-stat-n">0</div>
+        <div class="cs-stat-l">Searches required</div>
+      </div>
+      <div>
+        <div class="cs-stat-n">∞</div>
+        <div class="cs-stat-l">Moods supported</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span class="f-copy">© 2026 Mike — All rights reserved</span>
+  <ul class="f-links">
+    <li><a href="index.html#works">Work</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

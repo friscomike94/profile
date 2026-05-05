@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ironleg — Mike</title>
+<link rel="stylesheet" href="css/style.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,400;12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  .cs-wrap { max-width: 1000px; margin: 0 auto; padding: 0 2.5rem 8rem; }
+
+  /* HERO */
+  .cs-hero {
+    min-height: 60vh; display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 6rem 2.5rem 4rem;
+    border-bottom: 1px solid var(--border); position: relative; overflow: hidden;
+  }
+  .cs-hero-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(242,237,230,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(242,237,230,.03) 1px, transparent 1px);
+    background-size: 80px 80px; pointer-events: none;
+  }
+  .cs-back {
+    font-family: var(--f-mono); font-size: .63rem;
+    text-transform: uppercase; letter-spacing: .14em;
+    color: var(--muted); margin-bottom: 3rem;
+    display: inline-flex; align-items: center; gap: .5rem;
+    transition: color .2s; position: relative; z-index: 2;
+  }
+  .cs-back:hover { color: var(--acid); }
+  .cs-label {
+    font-family: var(--f-mono); font-size: .63rem;
+    text-transform: uppercase; letter-spacing: .18em;
+    color: var(--acid); margin-bottom: 1.2rem; position: relative; z-index: 2;
+  }
+  .cs-title {
+    font-family: var(--f-display);
+    font-size: clamp(4rem, 10vw, 8rem);
+    line-height: .88; letter-spacing: .02em;
+    color: var(--paper); position: relative; z-index: 2;
+    margin-bottom: 2rem;
+  }
+  .cs-meta-row {
+    display: flex; gap: 3rem; flex-wrap: wrap;
+    position: relative; z-index: 2;
+  }
+  .cs-meta-item { }
+  .cs-meta-label {
+    font-family: var(--f-mono); font-size: .55rem;
+    text-transform: uppercase; letter-spacing: .14em;
+    color: var(--muted); margin-bottom: .3rem;
+  }
+  .cs-meta-val {
+    font-family: var(--f-mono); font-size: .7rem;
+    color: var(--paper); letter-spacing: .04em;
+  }
+
+  /* SECTIONS */
+  .cs-section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  .cs-section:last-child { border-bottom: none; }
+  .cs-section-label {
+    font-family: var(--f-mono); font-size: .58rem;
+    text-transform: uppercase; letter-spacing: .18em;
+    color: var(--acid); margin-bottom: 1rem;
+  }
+  .cs-h2 {
+    font-family: var(--f-display);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    letter-spacing: .02em; color: var(--paper);
+    line-height: .9; margin-bottom: 2.5rem;
+  }
+  .cs-body {
+    font-size: .95rem; color: var(--muted);
+    line-height: 1.85; max-width: 680px;
+  }
+  .cs-body strong { color: var(--paper); font-weight: 500; }
+
+  /* THREE-COL */
+  .cs-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-top: 2.5rem; }
+  .cs-col-label {
+    font-family: var(--f-mono); font-size: .58rem;
+    text-transform: uppercase; letter-spacing: .14em;
+    color: var(--acid); margin-bottom: .8rem;
+    border-bottom: 1px solid rgba(200,255,0,.15); padding-bottom: .5rem;
+  }
+  .cs-col-body { font-size: .85rem; color: var(--muted); line-height: 1.75; }
+
+  /* STAT ROW */
+  .cs-stats { display: flex; gap: 4rem; flex-wrap: wrap; margin-top: 2.5rem; }
+  .cs-stat-n {
+    font-family: var(--f-display); font-size: 3.5rem;
+    color: var(--acid); line-height: 1;
+  }
+  .cs-stat-l {
+    font-family: var(--f-mono); font-size: .6rem;
+    text-transform: uppercase; letter-spacing: .1em;
+    color: var(--muted); margin-top: .3rem;
+  }
+
+  /* PERSONA CARDS */
+  .cs-personas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 2.5rem; }
+  .cs-persona {
+    background: var(--ink); padding: 2rem 1.5rem;
+  }
+  .cs-persona-name {
+    font-family: var(--f-display); font-size: 1.6rem;
+    color: var(--paper); margin-bottom: .2rem;
+  }
+  .cs-persona-role {
+    font-family: var(--f-mono); font-size: .58rem;
+    text-transform: uppercase; letter-spacing: .1em;
+    color: var(--acid); margin-bottom: 1.2rem;
+  }
+  .cs-persona-row { margin-bottom: .8rem; }
+  .cs-persona-key {
+    font-family: var(--f-mono); font-size: .55rem;
+    text-transform: uppercase; letter-spacing: .1em;
+    color: var(--muted); margin-bottom: .3rem;
+  }
+  .cs-persona-val { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+
+  /* FLOW */
+  .cs-flow { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+  .cs-flow-item { display: flex; align-items: flex-start; gap: 1.5rem; }
+  .cs-flow-num {
+    font-family: var(--f-display); font-size: 2rem;
+    color: rgba(200,255,0,.2); min-width: 2.5rem; line-height: 1;
+  }
+  .cs-flow-title {
+    font-family: var(--f-mono); font-size: .65rem;
+    text-transform: uppercase; letter-spacing: .1em;
+    color: var(--paper); margin-bottom: .4rem;
+  }
+  .cs-flow-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
+  /* QUOTE */
+  .cs-quote {
+    border-left: 2px solid var(--acid);
+    padding: 1.5rem 2rem; margin: 2.5rem 0;
+    background: rgba(200,255,0,.02);
+  }
+  .cs-quote-text {
+    font-family: var(--f-body); font-size: 1.1rem;
+    font-weight: 300; color: var(--paper); line-height: 1.7;
+    font-style: italic; margin-bottom: .8rem;
+  }
+  .cs-quote-attr {
+    font-family: var(--f-mono); font-size: .58rem;
+    text-transform: uppercase; letter-spacing: .12em; color: var(--muted);
+  }
+
+  /* FINDINGS */
+  .cs-findings { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.5rem; }
+  .cs-finding { padding: 1.5rem; border: 1px solid var(--border); }
+  .cs-finding-pct {
+    font-family: var(--f-display); font-size: 2.8rem;
+    color: var(--acid); line-height: 1; margin-bottom: .5rem;
+  }
+  .cs-finding-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
+  /* ITERATION */
+  .cs-iter { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+  .cs-iter-item { padding: 1.5rem; background: rgba(242,237,230,.03); }
+  .cs-iter-before {
+    font-family: var(--f-mono); font-size: .55rem;
+    text-transform: uppercase; letter-spacing: .12em;
+    color: var(--red); margin-bottom: .6rem;
+  }
+  .cs-iter-after {
+    font-family: var(--f-mono); font-size: .55rem;
+    text-transform: uppercase; letter-spacing: .12em;
+    color: var(--acid); margin-bottom: .6rem;
+  }
+  .cs-iter-text { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
+  /* PROCESS STEPS */
+  .cs-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); margin-top: 2.5rem; }
+  .cs-step { background: var(--ink); padding: 1.5rem 1.2rem; }
+  .cs-step-n {
+    font-family: var(--f-display); font-size: 2rem;
+    color: rgba(200,255,0,.15); margin-bottom: .5rem; line-height: 1;
+  }
+  .cs-step-title {
+    font-family: var(--f-mono); font-size: .6rem;
+    text-transform: uppercase; letter-spacing: .1em;
+    color: var(--acid); margin-bottom: .5rem;
+  }
+  .cs-step-desc { font-size: .8rem; color: var(--muted); line-height: 1.6; }
+
+  /* TESTING TABLE */
+  .cs-test { display: flex; flex-direction: column; gap: 1px; background: var(--border); margin-top: 2rem; }
+  .cs-test-row { display: grid; grid-template-columns: 180px 1fr 1fr 1fr; background: var(--ink); }
+  .cs-test-row.header { background: rgba(200,255,0,.06); }
+  .cs-test-cell {
+    padding: 1rem 1.2rem; font-size: .8rem; color: var(--muted);
+    border-right: 1px solid var(--border);
+  }
+  .cs-test-cell:last-child { border-right: none; }
+  .cs-test-row.header .cs-test-cell {
+    font-family: var(--f-mono); font-size: .55rem;
+    text-transform: uppercase; letter-spacing: .1em; color: var(--acid);
+  }
+
+  @media (max-width: 768px) {
+    .cs-3col, .cs-personas, .cs-findings, .cs-iter, .cs-steps { grid-template-columns: 1fr; }
+    .cs-test-row { grid-template-columns: 1fr; }
+    .cs-meta-row { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="n-logo">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="n-badge">
+      <polygon points="100,12 172,52 172,148 100,188 28,148 28,52" fill="none" stroke="#c8ff00" stroke-width="0.5" opacity="0.12"/>
+      <polygon points="100,12 172,52 172,148 100,188 28,148 28,52" fill="none" stroke="#c8ff00" stroke-width="1" opacity="0.3"/>
+      <polygon points="100,12 172,52 172,148 100,188 28,148 28,52" fill="none" stroke="#c8ff00" stroke-width="0.9" opacity="0.5" stroke-dasharray="4 2"/>
+      <circle cx="100" cy="100" r="56" fill="none" stroke="#0014ff" stroke-width="0.6" stroke-dasharray="3 9" opacity="0.3"/>
+      <circle cx="100" cy="12" r="3" fill="#c8ff00" opacity="0.9"/>
+      <circle cx="172" cy="52" r="3" fill="#c8ff00" opacity="0.9"/>
+      <circle cx="172" cy="148" r="3" fill="#c8ff00" opacity="0.9"/>
+      <circle cx="100" cy="188" r="3" fill="#c8ff00" opacity="0.9"/>
+      <circle cx="28" cy="148" r="3" fill="#c8ff00" opacity="0.9"/>
+      <circle cx="28" cy="52" r="3" fill="#c8ff00" opacity="0.9"/>
+      <path d="M52 152 L52 48 L80 100 L108 48 L108 152" fill="none" stroke="#c8ff00" stroke-width="13" stroke-linejoin="miter" stroke-linecap="square"/>
+      <path d="M120 152 L120 48 L168 100 L120 48 L168 152" fill="none" stroke="#c8ff00" stroke-width="13" stroke-linejoin="miter" stroke-linecap="square"/>
+      <rect x="52" y="93" width="24" height="7" fill="#0a0a0a"/>
+      <rect x="92" y="93" width="16" height="7" fill="#0a0a0a"/>
+      <rect x="64" y="98" width="64" height="3.5" fill="#c8ff00"/>
+    </svg>
+  </a>
+  <ul class="n-links">
+    <li><a href="index.html#works">Work</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="index.html#contact" class="n-hire">Hire me</a>
+</nav>
+
+<!-- HERO -->
+<div class="cs-hero">
+  <div class="cs-hero-bg"></div>
+  <a href="index.html#works" class="cs-back">← Back to work</a>
+  <div class="cs-label">UX/UI · Mobile · Case Study</div>
+  <h1 class="cs-title">IRONLEG</h1>
+  <div class="cs-meta-row">
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">Type</div>
+      <div class="cs-meta-val">Mobile App — iOS & Android</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">Role</div>
+      <div class="cs-meta-val">UX Research · UI Design</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">Course</div>
+      <div class="cs-meta-val">User Experience 2</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">Target</div>
+      <div class="cs-meta-val">Bike owners · Mechanics · Age 18–60</div>
+    </div>
+  </div>
+</div>
+
+<div class="cs-wrap">
+
+  <!-- OVERVIEW -->
+  <div class="cs-section">
+    <div class="cs-section-label">Overview</div>
+    <h2 class="cs-h2">THE PROBLEM</h2>
+    <p class="cs-body">
+      Owning and riding a motorcycle is built on <strong>brotherhood and sisterhood</strong> — but customizing one is a different story.
+      More human hands go into building a motorcycle than a car, and riders who want to customize face a fragmented, opaque market.
+      Finding the right mechanic, understanding pricing, and booking service all require effort that kills the momentum.
+    </p>
+    <div class="cs-3col">
+      <div>
+        <div class="cs-col-label">Problem</div>
+        <div class="cs-col-body">Riders lack tools to manage motorcycle customizing. Finding skilled mechanics with transparent pricing and availability is time-consuming and unreliable.</div>
+      </div>
+      <div>
+        <div class="cs-col-label">Assumption</div>
+        <div class="cs-col-body">A platform that matches owners with mechanics — with clear guides on builds, costs, and timelines — would remove the biggest friction points in the process.</div>
+      </div>
+      <div>
+        <div class="cs-col-label">Success</div>
+        <div class="cs-col-body">People actively sharing their builds, helping each other, and local motorcycle businesses joining the network to provide better solutions at a cheaper price.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESEARCH -->
+  <div class="cs-section">
+    <div class="cs-section-label">Research</div>
+    <h2 class="cs-h2">SURVEY + INTERVIEWS</h2>
+    <p class="cs-body">
+      I ran a <strong>36-person survey</strong> and conducted in-person interviews with motorcycle riders and mechanics across San Francisco.
+      The data made the pain points undeniable.
+    </p>
+    <div class="cs-findings">
+      <div class="cs-finding">
+        <div class="cs-finding-pct">95%</div>
+        <div class="cs-finding-desc">of surveyed riders are interested in customizing their bike — but most lack the tools, skills, or connections to do it.</div>
+      </div>
+      <div class="cs-finding">
+        <div class="cs-finding-pct">80%</div>
+        <div class="cs-finding-desc">prefer to do it themselves — but fear of something going wrong while DIY-ing a daily commute bike is a major blocker.</div>
+      </div>
+      <div class="cs-finding">
+        <div class="cs-finding-pct">#1</div>
+        <div class="cs-finding-desc">pain point: <strong>Time</strong>. Finding the right parts, coordinating with mechanics, and the actual service all eat hours riders don't have.</div>
+      </div>
+      <div class="cs-finding">
+        <div class="cs-finding-pct">↑</div>
+        <div class="cs-finding-desc">Price opacity is a top frustration — vague quotes that vary shop-to-shop make riders hesitant to commit to any customization.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUOTES -->
+  <div class="cs-section">
+    <div class="cs-section-label">User Interviews</div>
+    <h2 class="cs-h2">VOICES FROM THE ROAD</h2>
+    <div class="cs-quote">
+      <div class="cs-quote-text">"Something you can't open it, you don't own it."</div>
+      <div class="cs-quote-attr">Andrew Black — Experienced Mechanic</div>
+    </div>
+    <div class="cs-quote">
+      <div class="cs-quote-text">"I just cannot stop customizing bike. It's my passion."</div>
+      <div class="cs-quote-attr">Carson Dominic — Dedicated Rider</div>
+    </div>
+  </div>
+
+  <!-- PERSONAS -->
+  <div class="cs-section">
+    <div class="cs-section-label">Personas</div>
+    <h2 class="cs-h2">WHO WE'RE DESIGNING FOR</h2>
+    <p class="cs-body">Three distinct users emerged from research — each with a different relationship to motorcycle culture and different pain points with the current system.</p>
+    <div class="cs-personas">
+      <div class="cs-persona">
+        <div class="cs-persona-name">John, 33</div>
+        <div class="cs-persona-role">Mechanic</div>
+        <div class="cs-persona-row">
+          <div class="cs-persona-key">Motivations</div>
+          <div class="cs-persona-val">Find unique motorcycles to customize and share with his network. Loves opening bikes and helping newbies.</div>
+        </div>
+        <div class="cs-persona-row">
+          <div class="cs-persona-key">Pain Points</div>
+          <div class="cs-persona-val">Lacks opportunities to find the bikes he wants to work on. Can't easily connect with riders who need his skills.</div>
+        </div>
+      </div>
+      <div class="cs-persona">
+        <div class="cs-persona-name">Tommy, 28</div>
+        <div class="cs-persona-role">Assistant Manager</div>
+        <div class="cs-persona-row">
+          <div class="cs-persona-key">Motivations</div>
+          <div class="cs-persona-val">Customize his bike his way. Get maintenance at a fair price. Uses his bike as a daily commute.</div>
+        </div>
+        <div class="cs-persona-row">
+          <div class="cs-persona-key">Pain Points</div>
+          <div class="cs-persona-val">Afraid something goes wrong when DIY-ing his only commute vehicle. Maintenance services are expensive and opaque.</div>
+        </div>
+      </div>
+      <div class="cs-persona">
+        <div class="cs-persona-name">Alex, 24</div>
+        <div class="cs-persona-role">College Student</div>
+        <div class="cs-persona-row">
+          <div class="cs-persona-key">Motivations</div>
+          <div class="cs-persona-val">Learn how to fix and customize his own bike. Social riding — going out and chatting with riding pals.</div>
+        </div>
+        <div class="cs-persona-row">
+          <div class="cs-persona-key">Pain Points</div>
+          <div class="cs-persona-val">No tools, no garage, very limited budget. Has ridden since 18 but never touched his bike mechanically.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- USERFLOW -->
+  <div class="cs-section">
+    <div class="cs-section-label">Userflow</div>
+    <h2 class="cs-h2">THREE CORE FLOWS</h2>
+    <p class="cs-body">The app was designed around three primary tasks that surfaced from the research — each representing a distinct need in the motorcycle ownership journey.</p>
+    <div class="cs-flow">
+      <div class="cs-flow-item">
+        <div class="cs-flow-num">01</div>
+        <div>
+          <div class="cs-flow-title">Request Customizing</div>
+          <div class="cs-flow-desc">Home → Sign in/up → Browse Bikes/Mechanics → Check Availability → Submit Request. The primary conversion flow — fast and frictionless.</div>
+        </div>
+      </div>
+      <div class="cs-flow-item">
+        <div class="cs-flow-num">02</div>
+        <div>
+          <div class="cs-flow-title">Check Request Status</div>
+          <div class="cs-flow-desc">Current Screen → You → My Requests. Riders need constant visibility on where their bike is in the process.</div>
+        </div>
+      </div>
+      <div class="cs-flow-item">
+        <div class="cs-flow-num">03</div>
+        <div>
+          <div class="cs-flow-title">Browse Mechanic Portfolio</div>
+          <div class="cs-flow-desc">Explore → Bikes/Mechanics toggle → Mechanic profile → Portfolio. Trust is built before booking — riders want to see the work.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <div class="cs-section">
+    <div class="cs-section-label">Process</div>
+    <h2 class="cs-h2">FROM CRAZY 8S TO HIGH FIDELITY</h2>
+    <p class="cs-body">The design went through rapid ideation (Crazy 8s), digital wireframes, high-fidelity prototypes, and user testing before reaching the final iteration.</p>
+    <div class="cs-steps">
+      <div class="cs-step">
+        <div class="cs-step-n">01</div>
+        <div class="cs-step-title">Crazy 8s</div>
+        <div class="cs-step-desc">Rapid sketching — 8 screens in 8 minutes. Explored login, explore, mechanic profile, and request flows before committing to any direction.</div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-n">02</div>
+        <div class="cs-step-title">Wireframe</div>
+        <div class="cs-step-desc">Digital wireframes mapped the information architecture: login, explore bikes/mechanics, bike detail with availability, and the request form.</div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-n">03</div>
+        <div class="cs-step-title">Hi-Fi Prototype</div>
+        <div class="cs-step-desc">Dark UI with teal accents. Explore screen switches between Bikes and Mechanics views. Budget slider, timeline input, and parts checklist on the request screen.</div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-n">04</div>
+        <div class="cs-step-title">User Testing</div>
+        <div class="cs-step-desc">Three participants tested three tasks. Findings drove four concrete UI adjustments before the final prototype.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- USER TESTING -->
+  <div class="cs-section">
+    <div class="cs-section-label">User Testing</div>
+    <h2 class="cs-h2">TESTED WITH REAL RIDERS</h2>
+    <p class="cs-body">Three participants — a Harley Davidson rider, a Vespa rider, and a prospective buyer — completed three standardized tasks to surface usability issues.</p>
+    <div class="cs-test">
+      <div class="cs-test-row header">
+        <div class="cs-test-cell">Participant</div>
+        <div class="cs-test-cell">Task 1 — Request Customizing</div>
+        <div class="cs-test-cell">Task 2 — Check Request Status</div>
+        <div class="cs-test-cell">Task 3 — Browse Portfolio</div>
+      </div>
+      <div class="cs-test-row">
+        <div class="cs-test-cell" style="color:var(--paper);font-weight:500;">Deok-gil Woo<br/><span style="color:var(--muted);font-size:.75em;">Harley Davidson rider</span></div>
+        <div class="cs-test-cell">Completed in 1 minute — Explore → Deus → choose bike → check availability → submit</div>
+        <div class="cs-test-cell">You → My Request — 10 seconds</div>
+        <div class="cs-test-cell">Request → choose bike → submit — 30 sec</div>
+      </div>
+      <div class="cs-test-row">
+        <div class="cs-test-cell" style="color:var(--paper);font-weight:500;">Chae hyun hong<br/><span style="color:var(--muted);font-size:.75em;">Vespa rider</span></div>
+        <div class="cs-test-cell">2 minutes — Request → Deusmoto → Check Availability</div>
+        <div class="cs-test-cell">Struggled — Mechanics filter hard to see</div>
+        <div class="cs-test-cell">Request → CX500 → Check Availability — 30 sec</div>
+      </div>
+      <div class="cs-test-row">
+        <div class="cs-test-cell" style="color:var(--paper);font-weight:500;">Choi<br/><span style="color:var(--muted);font-size:.75em;">Wants a motorcycle</span></div>
+        <div class="cs-test-cell">Completed the flow successfully</div>
+        <div class="cs-test-cell">Completed successfully</div>
+        <div class="cs-test-cell">"Check Availability" label was confusing on portfolio screen</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROTOTYPE VISUALS -->
+  <div class="cs-section">
+    <div class="cs-section-label">Prototype</div>
+    <h2 class="cs-h2">HIGH FIDELITY SCREENS</h2>
+    <p class="cs-body">Dark UI, teal accent system, explore/mechanics dual-view, availability checking, and a full request flow — tested with real riders.</p>
+    <div style="margin-top:2.5rem;">
+      <img src="assets/ironleg/proto_1.png" alt="ironleg high fidelity prototype screens" style="width:100%;display:block;margin-bottom:1px;"/>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:1px;">
+        <img src="assets/ironleg/proto_2.png" alt="UI adjustments — filter contrast fix" style="width:100%;display:block;"/>
+        <img src="assets/ironleg/proto_3.png" alt="UI adjustments — userflow fix" style="width:100%;display:block;"/>
+        <img src="assets/ironleg/proto_4.png" alt="UI adjustments — request form" style="width:100%;display:block;"/>
+        <img src="assets/ironleg/proto_5.png" alt="UI adjustments — availability fix" style="width:100%;display:block;"/>
+      </div>
+      <img src="assets/ironleg/proto_6.png" alt="ironleg final prototype" style="width:100%;display:block;margin-top:1px;"/>
+    </div>
+  </div>
+
+  <!-- ITERATIONS -->
+  <div class="cs-section">
+    <div class="cs-section-label">Iterations</div>
+    <h2 class="cs-h2">FOUR FIXES FROM TESTING</h2>
+    <p class="cs-body">User testing surfaced four clear problems. Each one had a direct design solution applied before the final prototype.</p>
+    <div class="cs-iter">
+      <div class="cs-iter-item">
+        <div class="cs-iter-before">Before</div>
+        <div class="cs-iter-text">Bike ↔ Mechanics toggle used color to distinguish views — but the contrast was too low for users to notice the mode switch.</div>
+      </div>
+      <div class="cs-iter-item">
+        <div class="cs-iter-after">After</div>
+        <div class="cs-iter-text">Increased color contrast on the filter toggle. Changed "Style" label to "Model" for clarity. Reduced redundant message icons in the UI.</div>
+      </div>
+      <div class="cs-iter-item">
+        <div class="cs-iter-before">Before</div>
+        <div class="cs-iter-text">"Check Availability" button appeared on multiple screens — portfolio view and bike list — creating confusion about what action to take where.</div>
+      </div>
+      <div class="cs-iter-item">
+        <div class="cs-iter-after">After</div>
+        <div class="cs-iter-text">"Check Availability" restricted to the bike detail screen only. Portfolio screen now shows a clear "Go to Portfolio" CTA instead.</div>
+      </div>
+      <div class="cs-iter-item">
+        <div class="cs-iter-before">Before</div>
+        <div class="cs-iter-text">Request form had no visual reference — users couldn't confirm they were requesting the right style of customization.</div>
+      </div>
+      <div class="cs-iter-item">
+        <div class="cs-iter-after">After</div>
+        <div class="cs-iter-text">Added a "Customize like..." photo section to the request form so riders can show the mechanic exactly what they want.</div>
+      </div>
+      <div class="cs-iter-item">
+        <div class="cs-iter-before">Before</div>
+        <div class="cs-iter-text">After sign-in, the app defaulted to the Mechanics explore view — which wasn't the primary use case for most riders.</div>
+      </div>
+      <div class="cs-iter-item">
+        <div class="cs-iter-after">After</div>
+        <div class="cs-iter-text">Post-login now shows Bikes explore view by default. Users can still switch to Mechanics — but the primary intent is served first.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTCOME -->
+  <div class="cs-section">
+    <div class="cs-section-label">Outcome</div>
+    <h2 class="cs-h2">WHAT IT BECAME</h2>
+    <p class="cs-body">
+      ironleg became a <strong>community-first marketplace</strong> for motorcycle culture. Not just a booking app — a network where riders share builds, compare mechanics, and help each other get better work done at a fairer price.
+      The final prototype demonstrated that <strong>transparency around pricing, timing, and mechanic portfolios</strong> is the unlock that makes riders commit to customization they've been putting off for years.
+    </p>
+    <div class="cs-stats">
+      <div>
+        <div class="cs-stat-n">36</div>
+        <div class="cs-stat-l">Survey respondents</div>
+      </div>
+      <div>
+        <div class="cs-stat-n">3</div>
+        <div class="cs-stat-l">User personas built</div>
+      </div>
+      <div>
+        <div class="cs-stat-n">4</div>
+        <div class="cs-stat-l">UI fixes from testing</div>
+      </div>
+      <div>
+        <div class="cs-stat-n">3×</div>
+        <div class="cs-stat-l">Prototype iterations</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER NAV -->
+<footer>
+  <span class="f-copy">© 2026 Mike — All rights reserved</span>
+  <ul class="f-links">
+    <li><a href="index.html#works">Work</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
