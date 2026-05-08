@@ -157,4 +157,48 @@
   document.getElementById('lang-toggle').addEventListener('click', () => applyLang(currentLang === 'en' ? 'ko' : 'en'));
   document.getElementById('invert-toggle').addEventListener('click', () => document.body.classList.toggle('inverted'));
 
+  // ── BACKGROUND MUSIC ──
+  const audio = document.getElementById('bg-audio');
+  const musicBtn = document.getElementById('music-toggle');
+  let playing = false;
+  audio.volume = 0.18;
+  musicBtn.addEventListener('click', () => {
+    if (playing) {
+      audio.pause();
+      musicBtn.textContent = '♪';
+      musicBtn.style.color = '';
+    } else {
+      audio.play();
+      musicBtn.textContent = '♫';
+      musicBtn.style.color = 'var(--acid)';
+    }
+    playing = !playing;
+  });
+
+  // ── TETRIS MODAL ──
+  const tetrisItem  = document.getElementById('tetris-work-item');
+  const tetrisModal = document.getElementById('tetris-modal');
+  const tetrisClose = document.getElementById('tetris-close');
+  const tetrisFrame = document.getElementById('tetris-frame');
+
+  function openTetris() {
+    tetrisFrame.src = 'tetris.html';
+    tetrisModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeTetris() {
+    tetrisModal.style.display = 'none';
+    tetrisFrame.src = '';
+    document.body.style.overflow = '';
+  }
+
+  if (tetrisItem)  tetrisItem.addEventListener('click', openTetris);
+  if (tetrisClose) tetrisClose.addEventListener('click', closeTetris);
+  tetrisModal && tetrisModal.addEventListener('click', e => {
+    if (e.target === tetrisModal) closeTetris();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && tetrisModal.style.display === 'flex') closeTetris();
+  });
+
 })();

@@ -42,6 +42,8 @@
   <div class="nav-toggles">
     <button class="toggle-btn" id="lang-toggle">한국어</button>
     <button class="toggle-btn" id="invert-toggle">◐</button>
+    <button class="toggle-btn" id="music-toggle" title="Beethoven — Symphony No. 9">♪</button>
+    <audio id="bg-audio" src="assets/beethoven9_climax.mp3" loop preload="none"></audio>
     <a href="assets/resume.pdf" download class="toggle-btn">Resume ↓</a>
     <a href="#contact" class="n-hire" data-i18n="nav.hire">Hire me</a>
   </div>
@@ -236,8 +238,30 @@
       <div class="work-arrow">↗</div>
       <img src="assets/liger/1.png" alt="Liger typeface specimen" class="work-preview"/>
     </a>
+
+    <div class="work-item reveal" id="tetris-work-item" style="cursor:pointer;">
+      <div class="work-idx">06</div>
+      <div class="work-center">
+        <div class="work-tags-row">
+          <span class="wtag">Game Dev</span>
+          <span class="wtag">JavaScript</span>
+          <span class="wtag">Canvas</span>
+        </div>
+        <div class="work-title-row">Tetris — StarCraft Edition</div>
+        <div class="work-desc">StarCraft-themed Tetris built in vanilla JS. Playable right here — no page switch needed.</div>
+      </div>
+      <div class="work-arrow" style="color:var(--acid)">▶ Play</div>
+    </div>
   </div>
 </section>
+
+<!-- TETRIS MODAL -->
+<div id="tetris-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,10,10,0.92);backdrop-filter:blur(6px);align-items:center;justify-content:center;">
+  <div style="position:relative;width:min(98vw,860px);height:min(95vh,640px);border:1px solid var(--acid);box-shadow:0 0 40px rgba(200,255,0,0.15);">
+    <button id="tetris-close" style="position:absolute;top:-40px;right:0;background:none;border:none;color:var(--acid);font-family:var(--f-mono);font-size:13px;letter-spacing:2px;cursor:pointer;padding:6px 12px;opacity:0.8;">✕ CLOSE</button>
+    <iframe id="tetris-frame" src="" title="Tetris — StarCraft Edition" style="width:100%;height:100%;border:none;display:block;"></iframe>
+  </div>
+</div>
 
 <!-- ABOUT -->
 <section id="about">
